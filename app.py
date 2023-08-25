@@ -30,7 +30,7 @@ def plot_data(data, score, std, title, goal_score):
     fig = go.Figure(data = [scatter], layout=layout)
     fig.add_hline(y=goal_score, line_dash="dot",
                   annotation_text="goal score",
-                  annotation_position="top right",
+                  annotation_position="bottom right",
                   annotation_font_size=20,
                   line_color="plum",
                   annotation_font_color="plum"
@@ -46,7 +46,7 @@ data = load_data('./data/data.csv')
 
 # Neural Network Model
 st.subheader("Neural Network Model")
-plot_data(data, "score", "std", "Neural Network Model", 0.99)
+plot_data(data, "score", "std", "Neural Network Model", 0.25)
 
 # Time Series Model
 st.subheader("Time Series Model")
