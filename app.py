@@ -1,5 +1,6 @@
 import pandas as pd
 import streamlit as st
+import plotly.express as px
 import plotly.graph_objects as go
 
 
@@ -7,8 +8,19 @@ import plotly.graph_objects as go
 def load_data(file_name: str):
     return pd.read_csv(file_name, encoding='utf-8')
 
+# Format function for a better display on Time Series Model threshold
+def format_score(score):
+    if score >= 1e6:
+        return '{:.2f}M'.format(score / 1e6)
+    else:
+        return '{:.2f}'.format(score)
+
 # Function to plot data
 def plot_data(data, score, score_interval, std, title, threshold_score):
+    colors = px.colors.qualitative.Plotly[:len(data)]
+
+    light_purple = 'rgb(180, 140, 220)'
+
     scatter = go.Scatter(
         x=data['team'],
         y=data[score],
@@ -16,11 +28,12 @@ def plot_data(data, score, score_interval, std, title, threshold_score):
         marker_symbol='diamond',
         marker=dict(
             size = 12,
-            color='#580BE6'),
+            color=colors),
         error_y=dict(
             type='data',
             array=data[std],
-            visible=True
+            visible=True,
+            color = 'white'
         ))
 
     layout = go.Layout(
@@ -31,15 +44,18 @@ def plot_data(data, score, score_interval, std, title, threshold_score):
         yaxis_range=score_interval
     )
 
+    formatted_threshold_score = format_score(threshold_score)
+
     fig = go.Figure(data = [scatter], layout=layout)
     fig.add_hline(y=threshold_score, line_dash="dot",
-                  annotation_text="threshold score: {}".format(threshold_score),
+                  annotation_text="Threshold Score: {}".format(formatted_threshold_score),
                   annotation_position="bottom right",
                   annotation_font_size=20,
-                  line_color="plum",
-                  annotation_font_color="plum"
+                  line_color=light_purple,
+                  annotation_font_color=light_purple
                   )
     st.plotly_chart(fig, use_container_width=True)
+
 
 
 # General Setup
@@ -56,5 +72,5 @@ plot_data(load_data('./data/data_challenge01.csv'),
 # Time Series Model
 st.header("Time Series Model")
 plot_data(load_data('./data/data_challenge02.csv'),
-          "score", [0.5e6,7.0e6], "std",
+          "score", [0.25e6,7.0e6], "std",
           "Time Series Model", 1.5e6)
