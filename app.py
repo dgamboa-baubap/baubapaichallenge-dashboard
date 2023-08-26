@@ -17,7 +17,7 @@ def format_score(score):
 
 # Function to plot data
 def plot_data(data, score, score_interval, std, title, threshold_score):
-    colors = px.colors.qualitative.Plotly[:len(data)]
+    colors = ['blue', 'green', 'red', 'purple', 'orange', 'pink', 'brown', 'cyan', 'magenta', 'lime', 'yellow', 'teal']
 
     light_purple = 'rgb(180, 140, 220)'
 
@@ -28,7 +28,7 @@ def plot_data(data, score, score_interval, std, title, threshold_score):
         marker_symbol='diamond',
         marker=dict(
             size = 12,
-            color=colors),
+            color=colors[:len(data)]),
         error_y=dict(
             type='data',
             array=data[std],
@@ -66,11 +66,11 @@ st.title('Baubap AI Challenge - Dashboard')
 # Neural Network Model
 st.header("Neural Network Model")
 plot_data(load_data('./data/data_challenge01.csv'),
-          "score", [0,1], "std",
+          "score", [0,1.2], "std",
           "Neural Network Model", 0.25)
 
 # Time Series Model
 st.header("Time Series Model")
 plot_data(load_data('./data/data_challenge02.csv'),
-          "score", [0.25e6,7.0e6], "std",
+          "score", [0.25e6,12.0e6], "std",
           "Time Series Model", 1.5e6)
