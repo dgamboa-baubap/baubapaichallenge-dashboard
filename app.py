@@ -72,5 +72,5 @@ plot_data(load_data('./data/data_challenge01.csv'),
 # Time Series Model
 st.header("Time Series Model")
 plot_data(load_data('./data/data_challenge02.csv'),
-          "score", [0.25e6,12.0e6], "std",
+          "score", [0.25e6,6.0e6], "std",
           "Time Series Model", 2.5e6)
