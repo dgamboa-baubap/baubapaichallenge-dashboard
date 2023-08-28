@@ -1,13 +1,13 @@
-team,score,std
-Tensor Troopers,0.23346,0
-radiozeppelin,0.24674,0
-gupy.json,0.24959,0
-Los Muguis,0.25183,0
-Neural Nerdworks,0.25400,0
-Fusion,0.26171,0
-Dattackers,0.28521,0
-RP Team,0.30223,0
-Data Freaks,0.34536,0
-Data Knights,0.45192,0
-Neuro Squad,1.00000,0
-Vento Aureo,1.00000,0
+team,score,Std
+Neuro Squad,1.0000,0.1000
+Dattackers,0.3816,0.0096
+Vento Aureo,1.0000,0.1000
+Tensor Troopers,0.2289,0.0054
+Neural Nerdworks,0.2461,0.0090
+RP Team,0.3449,0.0089
+Data Freaks,0.2613,0.0053
+radiozeppelin,0.2419,0.0026
+Fusion,0.3506,0.0096
+Data Knights,0.2282,0.0042
+Los Muguis,0.2630,0.0098
+gupy.json,0.2605,0.0092
